@@ -1,0 +1,31 @@
+
+
+
+Pour la session :  A mettre avant header
+<?php
+chdir('..');
+$nouveauRepertoireActif = getcwd();
+$sousRepertoireTete = $nouveauRepertoireActif . '/4-Connexion';
+//echo $sousRepertoireTete;
+if (is_dir($sousRepertoireTete)) {
+    // echo "Le sous-répertoire login marche  existe.\n";
+    include("$sousRepertoireTete/Login.php"); 
+} else {
+    echo "Le sous-répertoire n'existe pas.\n";
+}
+?>
+
+
+pour le header : A mettre dans le body 
+<?php
+chdir('..');
+$nouveauRepertoireActif = getcwd();
+$sousRepertoireTete = $nouveauRepertoireActif . '/Commerce/5-Tete';//parfois il faut enlmever /Commerce
+//echo $sousRepertoireTete;
+if (is_dir($sousRepertoireTete)) {
+    //echo "Le sous-répertoire login marche  existe.\n";
+    include("$sousRepertoireTete/tete.php"); 
+} else {
+    echo "Le sous-répertoire n'existe pas.\n";
+}
+?>
