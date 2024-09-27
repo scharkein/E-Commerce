@@ -168,6 +168,16 @@ body {
     position: fixed;
     justify-content: space-between;
   }
+  .wrapper nav.menu-open {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw; /* Prend toute la largeur de l'écran */
+    height: 100vh; /* Prend toute la hauteur de l'écran */
+    background-color: red; /* Couleur de fond du menu */
+    z-index: 1000; /* Assure que le menu s'affiche au-dessus du contenu existant */
+  }
 }
 
 .wrapper nav .mainLogo {
@@ -217,14 +227,38 @@ body {
 
 .wrapper nav .menu .menuLinks {
   width: calc(100% - 48px);
+  
 }
 
 @media screen and (max-width: 900px) {
   .wrapper nav .menu .menuLinks {
-    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color:rgba(144, 144, 144, 0.2);
+    backdrop-filter: blur(7px);
+    width: 100vh;
+    height: 100vh;
+    margin-left: -200%;
+    transition: all 0.5s ease;
+    font-size: 2em;
   }
+  .wrapper nav .menu .menuLinks .menuLink{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 25px 0;
+    
+  }
+  .wrapper nav .menu .menuLinks.menu-open{
+    margin-left: 0;
 }
 
+}
 .wrapper nav .menu .menuLinks .menuLink {
   font-weight: 800;
   font-size: 20px;
@@ -269,7 +303,7 @@ body {
 .wrapper nav .shoppingCart .shoppingIcon {
   width: 48px;
   height: 48px;
-  background-color: white;
+  background-color:none;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -462,13 +496,15 @@ body {
   display: none;
   justify-content: center;
   align-items: center;
-  margin-left: 10px;
+  margin-left: 20px;
+  margin-top: 25px;
   cursor: pointer;
 }
 
 @media screen and (max-width: 900px) {
   .wrapper nav .iconMenu {
-    display: flex;
+    display: block;
+    z-index: 100000000000000000;
   }
 }
 

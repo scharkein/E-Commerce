@@ -5,35 +5,6 @@ window.addEventListener("load", event => {
     // Variables
     ////////////////
 
-    const product = {
-
-      value: 700,
-      images: [{
-        img: '/Commerce/img/GeForce_RTX_4070.png'
-      }, //Commerce/img 1
-
-      {
-        img: '/Commerce/img/GeForce_RTX_4070.png'
-      },//Commerce/img 2
-
-      {
-        img: '/Commerce/img/GeForce_RTX_4070.png'
-      },//Commerce/img 3
-
-      {
-        img: '/Commerce/img/GeForce_RTX_4070.png'
-      },//Commerce/img 4
-
-      {
-        img: '/Commerce/img/GeForce_RTX_4070.png'
-      },//Commerce/img 5
-
-      {
-        img: '/Commerce/img/GeForce_RTX_4070.png'
-      }]
-    };//Commerce/img 6
-
-
     const btnAdd = document.querySelector('.btn.add'),
       btnContainer = document.querySelector('.btnContainer'),
       wrapper = document.querySelector('.wrapper'),
@@ -48,12 +19,6 @@ window.addEventListener("load", event => {
       shoppingIcon = document.querySelector('.shoppingIcon'),
       shoppingMenu = document.querySelector('.shoppingMenu'),
       emptyCart = document.querySelector('.emptyCart');
-
-    let = priceFinal = document.querySelector('.priceFinal'),
-      priceOriginal = document.querySelector('.priceOriginal'),
-      discount = null,
-      maxQuantity = 10,                                   //quantite du produits
-      newMaxQuantity = maxQuantity;
 
     ////////////////
     // Evenement
