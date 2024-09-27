@@ -1,0 +1,732 @@
+/* https://app.contrast-finder.org/ */
+/* https://mycolor.space/ */
+:root {
+    /*================couleurs=============================*/
+    --color-bg:#363636;
+    --color-bg-dark: #0e0e10;
+    --color-bg-alt:#363636;
+    --color-header-black:rgba(144, 144, 144, 0.1);
+    --color-purple:#9147ff;
+    --color-purple-light:#a970ff;
+    --color-purple-dark:#5c16c5;
+    --color-purple-alt:#772ce8;
+    --color-text:#efeff1;
+    --color-text-alt:#dedee3;
+    --color-text-link:#bf94ff;
+    --color-text-link-hover:#a970ff;
+    --color-line: var(var(--color-text-alt));
+    --color-background-button-primary-default:var(--color-purple);
+    --color-background-button-primary-hover:var(--color-purple-alt);
+    --color-background-button-primary-active:var(--color-purple-dark);
+    --color-site-1: var(--color-purple);
+    --color-site-1-s: var(--color-purple-light);
+    --color-site-1-d: var(--color-purple-dark);
+    --color-site-2: #fff;
+    --color-site-3: #333;
+    --color-site-4: #ddd;
+  }
+
+    
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      border: 0;
+      -webkit-tap-highlight-color: transparent;
+      text-decoration: none;
+      color: inherit;
+      box-sizing: border-box;
+    }
+    *:focus {
+      outline: 0;
+    }
+    * input::-webkit-outer-spin-button,
+    * input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    
+    body {
+      background-color: var(--color-bg);
+      font-family: "Barlow", sans-serif;
+      font-weight: normal;
+      transition: all 0.4s ease;
+    }
+    @media screen and (max-width: 900px) {
+      body {
+        background-color:var(--color-bg);
+      }
+    }
+    
+    .wrapper {
+      width: 100%;
+      font-family: "Barlow", sans-serif;
+      user-select: none;
+      letter-spacing: 0.8px;
+      margin: 0 auto;
+    }
+    .wrapper .btnContainer {
+      width: 100%;
+      height: auto;
+      position: relative;
+      z-index: 3;
+      margin: 50px;
+    }
+    @media screen and (max-width: 900px) {
+      .wrapper .btnContainer.fixedBtn {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        padding: 20px 5%;
+        color: #363636;
+      }
+      .wrapper .btnContainer.fixedBtn:before {
+        content: "";
+        position: fixed;
+        width: 100vw;
+        height: 110px;
+        background: linear-gradient(0deg, white 60%, transparent 90%);
+        z-index: -2;
+        display: none;
+        left: 0;
+        bottom: 0;
+      }
+    }
+    @media screen and (max-width: 900px) and (max-width: 900px) {
+      .wrapper .btnContainer.fixedBtn:before {
+        display: block;
+      }
+    }
+    @media screen and (max-width: 900px) {
+      .wrapper .btnContainer.fixedBtn .btn {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+    }
+    .wrapper .btn {
+      background: var(--color-purple);
+      box-shadow: 0px 10px 20px -5px rgba(169, 112, 255, 0.4);
+      padding: 18px 50px;
+      font-size: 18px;
+      line-height: 22px;
+      text-align: center;
+      text-transform: uppercase;
+      border-radius: 6px;
+      color: white;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      font-family: "Barlow", sans-serif;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .wrapper .btn img {
+      margin-right: 10px;
+      transform: translateX(-6px);
+    }
+    .wrapper .btn:hover {
+      transform: translateY(3px);
+      box-shadow: 0px 10px 20px -5px rgba(169, 112, 255, 0.4);
+    }
+    @media screen and (max-width: 900px) {
+      .wrapper .btn:hover {
+        transform: translateY(0px);
+      }
+    }
+    @media screen and (max-width: 900px) {
+      .wrapper .btn {
+        width: 100%;
+      }
+    }
+    .wrapper nav {
+      background-color: var(--color-header-black);
+      display: flex;
+      position: absolute;
+      width: 100%;
+      height: 140px;
+      z-index: 2;
+      transition: all 0.4s ease;
+    }
+    @media screen and (max-width: 900px) {
+      .wrapper nav.fixed {
+        background-color: rgba(255, 255, 255, 0.9);
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+      }
+    }
+    @media screen and (max-width: 900px) {
+      .wrapper nav {
+        height: 60px;
+        position: fixed;
+        justify-content: space-between;
+      }
+    }
+    .wrapper nav .mainLogo {
+      width: 40%;
+      display: flex;
+      align-items: center;
+      /* padding: 0 60px; */
+      font-size: 28px;
+      color: var(--color-text);
+      font-weight: 800;
+      margin-left: -35px;
+    }
+  
+    @media screen and (max-width: 900px) {
+      .wrapper nav .mainLogo {
+        width: auto;
+        padding: 0 5vw;
+        font-size: 20px;
+      }
+      .wrapper nav.fixed .mainLogo {
+        color: #363636;
+      }
+    }
+    .wrapper nav .menu {
+      width: 60%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 60px 0 5vw;
+    }
+    @media screen and (max-width: 900px) {
+      .wrapper nav .menu {
+        width: auto;
+        padding: 0 5vw;
+      }
+    }
+    .wrapper nav .menu .menuLinks {
+      width: calc(100% - 48px);
+    }
+    @media screen and (max-width: 900px) {
+      .wrapper nav .menu .menuLinks {
+        display: none;
+      }
+    }
+    .wrapper nav .menu .menuLinks .menuLink {
+      font-weight: 800;
+      font-size: 20px;
+      line-height: 24px;
+      color: var(--color-text-link-hover);/*jsp */
+      position: relative;
+      margin-right: 10%;
+      transition: all 0.3s ease;
+    }
+    .wrapper nav .menu .menuLinks .menuLink:last-of-type {
+      margin-right: 0;
+    }
+    /*le point dans la nav*/
+    .wrapper nav .menu .menuLinks .menuLink:before {
+      content: "";
+      position: absolute;
+      background-color: rgba(52, 51, 51, 0.5);
+      width: 6px;
+      height: 6px;
+      border-radius: 6px;
+      bottom: -10px;
+      transition: all 0.3s ease;
+    }
+    .wrapper nav .menu .menuLinks .menuLink:hover {
+      color: var(--color-purple);
+    }
+    .wrapper nav .menu .menuLinks .menuLink:hover:before {
+      background-color: var(--color-purple);
+      width: 100%;
+      left: calc(100% - 100%);
+    }
+    .wrapper nav .shoppingCart {
+      z-index: 6;
+    }
+    .wrapper nav .shoppingCart .shoppingIcon {
+      width: 48px;
+      height: 48px;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      border-radius: 100%;
+      cursor: pointer;
+    }
+    @media screen and (max-width: 900px) {
+      .wrapper nav .shoppingCart .shoppingIcon {
+        background-color: transparent;
+      }
+    }
+    .wrapper nav .shoppingCart .itemNumber {
+      width: 16px;
+      height: 16px;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--color-purple);
+      border-radius: 100%;
+      font-size: 10px;
+      color: white;
+      font-weight: bold;
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      padding-left: 1px;
+      transform: translate(0, 0);
+    }
+    @media screen and (max-width: 900px) {
+      .wrapper nav .shoppingCart .itemNumber {
+        top: 0px;
+        right: 0px;
+      }
+    }
+    .wrapper nav .shoppingCart .itemNumber.addItem {
+      display: flex;
+      animation: addItem 0.4s ease;
+    }
+    @keyframes addItem {
+      0% {
+        opacity: 0;
+        transform: translate(-50px, 100px);
+      }
+      80% {
+        width: 20px;
+        height: 20px;
+        opacity: 1;
+        transform: translate(0%, 0%);
+      }
+      100% {
+        width: 16px;
+        height: 16px;
+      }
+    }
+    .wrapper nav .shoppingCart .shoppingMenu {
+      width: 300px;
+      background-color: white;
+      box-shadow: 0px 30px 50px -20px rgba(90, 90, 90, 0.3);
+      position: absolute;
+      top: 120px;
+      right: 40px;
+      border-radius: 10px;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      visibility: hidden;
+      opacity: 0;
+      transition: all 0.4s ease;
+      transform: translateY(50px);
+    }
+    @media screen and (max-width: 900px) {
+      .wrapper nav .shoppingCart .shoppingMenu {
+        top: 80px;
+        right: 3%;
+      }
+    }
+    .wrapper nav .shoppingCart .shoppingMenu:before {
+      content: "";
+      position: absolute;
+      background-color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 3px;
+      top: -8px;
+      right: 30px;
+      transform: rotate(45deg);
+    }
+    @media screen and (max-width: 900px) {
+      .wrapper nav .shoppingCart .shoppingMenu:before {
+        right: 76px;
+      }
+    }
+    .wrapper nav .shoppingCart .shoppingMenu .shoppingTitle {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--color-purple);
+      margin: 10px 0 30px 0;
+    }
+    .wrapper nav .shoppingCart .shoppingMenu .productResume {
+      display: flex;
+      align-items: center;
+    }
+    .wrapper nav .shoppingCart .shoppingMenu .productResume .shoppingThumb {
+      width: 80px;
+      height: 80px;
+      margin-right: 20px;
+      border: 2px solid #F5F5F5;
+      padding: 5px;
+      border-radius: 4px;
+    }
+    .wrapper nav .shoppingCart .shoppingMenu .productResume .shoppingProduct {
+      color: #979797;
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+    .wrapper nav .shoppingCart .shoppingMenu .productResume .shoppingQuantity {
+      color: var(--color-purple);
+      font-weight: 600;
+      font-size: 18px;
+    }
+    .wrapper nav .shoppingCart .shoppingMenu .shoppingBtn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .wrapper nav .shoppingCart .shoppingMenu .btn {
+      width: 100%;
+    }
+    .wrapper nav .shoppingCart .shoppingMenu .link {
+      margin: 50px 0 20px 0;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: #979797;
+      font-size: 14px;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+    .wrapper nav .shoppingCart .shoppingMenu .link img {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+      opacity: 0.3;
+      transition: all 0.2s ease;
+    }
+    .wrapper nav .shoppingCart .shoppingMenu .link:hover {
+      color: #5A5A5A;
+    }
+    .wrapper nav .shoppingCart .shoppingMenu .link:hover img {
+      opacity: 0.5;
+    }
+    .wrapper nav .shoppingCart .shoppingMenu.openShopping {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .wrapper nav .iconMenu {
+      width: 48px;
+      height: 48px;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    @media screen and (max-width: 900px) {
+      .wrapper nav .iconMenu {
+        display: flex;
+      }
+    }
+    /*================================================================================*/
+    .wrapper .content {
+      display: grid;
+      grid-template-columns: 20% 80%;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin: 0 auto;
+      min-height: 800px;
+      height: 100%;
+      transition: all 0.4s ease;
+    }
+    @media screen and (max-width: 1023px) {
+      .wrapper .content {
+        height: auto;
+        min-height: auto;
+      }
+    }
+    @media screen and (max-width: 900px) {
+      .wrapper .content {
+        align-items: flex-start;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, auto);
+      }
+    }
+    .wrapper .content .left,
+    .wrapper .content .right {
+      width: 100%;
+      height: 100%;
+    }
+    @media screen and (max-width: 900px) {
+      .wrapper .content .left,
+    .wrapper .content .right {
+        height: auto;
+      }
+    }
+    .wrapper .content .left {
+      padding-top: 140px;
+      background-color: var(--color-bg);
+      position: relative;
+    }
+    @media screen and (max-width: 900px) {
+      .wrapper .content .left {
+        padding: 60px 0px;
+      }
+    }
+   /*=========================================================================================*/
+    .wrapper .content .right {
+      background-color: white;
+      padding: 25px;
+      padding-top: 160px;
+    }
+    @media screen and (max-width: 900px) {
+      .wrapper .content .right {
+        height: auto;
+        padding: 10px;
+          margin-top: 100px;
+        padding-bottom: 100px;
+      }
+    }
+    /*==========================shoping cart =============================================*/
+/* Global "table" column settings */
+ .product-image {
+	 float: left;
+	 width: 20%;
+}
+ .product-details {
+	 float: left;
+	 width: 30%;
+}
+ .product-price {
+	 float: left;
+	 width: 12%;
+}
+ .product-quantity {
+	 float: left;
+	 width: 10%;
+     
+}
+.product-quantity input {
+    padding-left: 20px;
+}
+ .product-removal {
+	 float: left;
+	 width: 9%;
+}
+.product-date {
+  float: left;
+  width: 10%;
+}
+.product-clients {
+  float: left; 
+  width: 9%;
+}
+ .product-line-price {
+	 float: left;
+	 width: 9%;
+	 text-align: right;
+}
+/* This is used as the traditional .clearfix class */
+ .group:before, .shopping-cart:before, .column-labels:before, .product:before, .totals-item:before, .group:after, .shopping-cart:after, .column-labels:after, .product:after, .totals-item:after {
+	 content: '';
+	 display: table;
+}
+ .group:after, .shopping-cart:after, .column-labels:after, .product:after, .totals-item:after {
+	 clear: both;
+}
+ .group, .shopping-cart, .column-labels, .product, .totals-item {
+	 zoom: 1;
+}
+/* Apply clearfix in a few places */
+/* Apply dollar signs */
+ .product .product-price:after, .product .product-line-price:after, .totals-value:after {
+	 content: '€';
+}
+/* Body/Header stuff */
+ h1 {
+	 font-weight: 100;
+     padding-bottom: 15px;
+     color: var(--color-purple);
+}
+.img-cart{
+    position: absolute; 
+    top:163px;
+    left:500px;
+}
+@media screen and (max-width: 900px) {
+    .img-cart{
+        top: 233px;
+        left: 90px;
+    }
+    
+}
+ label {
+	 color: #aaa;
+}
+ .shopping-cart {
+	 margin-top: -45px;
+}
+/* Column headers */
+ .column-labels label {
+	 padding-bottom: 15px;
+	 margin-bottom: 15px;
+	 border-bottom: 1px solid #eee;
+     color: var(--color-purple);
+     font-weight: bold;
+}
+ .column-labels .product-image, .column-labels .product-details, .column-labels .product-removal {
+	 text-indent: -9999px;
+}
+/* Product entries */
+ .product {
+    display: flex;
+    align-items: center;
+	 margin-bottom: 20px;
+	 padding-bottom: 10px;
+	 border-bottom: 1px solid #eee;
+}
+ .product .product-image {
+	 text-align: center;
+}
+ .product .product-image img {
+	 width: 100px;
+}
+ .product .product-details .product-title {
+	 margin-right: 20px;
+}
+ .product .product-details .product-description {
+	 margin: 5px 20px 5px 0;
+	 line-height: 1.4em;
+}
+ .product .product-quantity input {
+	 width: 40px;
+}
+ .product .remove-product {
+	background: var(--color-purple);
+    box-shadow: 0px 10px 20px -5px rgba(169, 112, 255, 0.4);
+    padding: 10px 15px;
+    font-size: 18px;
+    line-height: 22px;
+    float: right;
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: 6px;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-family: "Barlow", sans-serif;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ .product .remove-product:hover {
+    transform: translateY(3px);
+    box-shadow: 0px 10px 20px -5px rgba(169, 112, 255, 0.4);
+    background-color: #a44;
+}
+/* Totals section */
+.totals label{
+    color: var(--color-purple);
+    font-weight: bold;
+}
+ .totals .totals-item {
+	 float: right;
+	 clear: both;
+	 width: 100%;
+	 margin-bottom: 10px;
+}
+ .totals .totals-item label {
+	 float: left;
+	 clear: both;
+	 width: 79%;
+	 text-align: right;
+}
+ .totals .totals-item .totals-value {
+	 float: right;
+	 width: 21%;
+	 text-align: right;
+}
+
+ .checkout {
+    background: var(--color-purple);
+    box-shadow: 0px 10px 20px -5px rgba(169, 112, 255, 0.4);
+    padding: 10px 15px;
+    font-size: 18px;
+    line-height: 22px;
+    float: right;
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: 6px;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-family: "Barlow", sans-serif;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ .checkout:hover {
+    transform: translateY(3px);
+    box-shadow: 0px 10px 20px -5px rgba(169, 112, 255, 0.4);
+	background-color: #494;
+}
+/* Make adjustments for tablet */
+ @media screen and (max-width: 650px) {
+	 .shopping-cart {
+		 margin: 0;
+		 padding-top: 20px;
+		 border-top: 1px solid #eee;
+	}
+	 .column-labels {
+		 display: none;
+	}
+	 .product-image {
+		 float: right;
+		 width: auto;
+	}
+	 .product-image img {
+		 margin: 0 0 10px 10px;
+	}
+	 .product-details {
+		 float: none;
+		 margin-bottom: 10px;
+		 width: auto;
+	}
+	 .product-price {
+		 clear: both;
+		 width: 70px;
+	}
+	 .product-quantity {
+		 width: 100px;
+	}
+	 .product-quantity input {
+		 margin-left: 20px;
+	}
+	 .product-quantity:before {
+		 content: 'x';
+	}
+	 .product-removal {
+		 width: auto;
+	}
+	 .product-line-price {
+		 float: right;
+		 width: 70px;
+	}
+}
+/* Make more adjustments for phone */
+ @media screen and (max-width: 350px) {
+	 .product-removal {
+		 float: right;
+	}
+	 .product-line-price {
+		 float: right;
+		 clear: left;
+		 width: auto;
+		 margin-top: 10px;
+	}
+	 .product .product-line-price:before {
+		 content: 'Item Total: $';
+	}
+	 .totals .totals-item label {
+		 width: 60%;
+	}
+	 .totals .totals-item .totals-value {
+		 width: 40%;
+	}
+}
+ 
