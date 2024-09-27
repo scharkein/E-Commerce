@@ -17,6 +17,7 @@ if (is_dir($sousRepertoireTete)) {
 } else {
     echo "sssLe sous-répertoire n'existe pas.\n";
 }
+
 ?>
   
         <div class="content"><!--creer la partie noir et blanc -->
@@ -57,7 +58,7 @@ if (is_dir($sousRepertoireTete)) {
                       <span>ou utilisez votre compte</span>
                       <input type="email" name="mail" placeholder="Email">
                       <input type="password" name="psw" placeholder="Mot de passe">
-                      <a href="#">Mot de passe oublié?</a>
+                      <a href="mot_de_passe.php">Mot de passe oublié?</a>
                       <button>Se connecter</button>
                   </form>
               </div>

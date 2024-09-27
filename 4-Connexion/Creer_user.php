@@ -30,17 +30,15 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){
 
         // Vérification de la préparation de la requête
         if ($stmt) {
-            mysqli_stmt_bind_param($stmt, "ssssss", 
+            mysqli_stmt_bind_param($stmt, "ssssis", 
             $nom, $prenom, $mail, $adresse, $code_postal, $psw);
             $result = mysqli_stmt_execute($stmt);
 
             if ($result) {
-                //echo "Ca marche";
-                header("Location: /Commerce/1-Acceuil/index.php");
+                header("Location:/Commerce/4-Connexion/Login_create_user.php");  
             } else {
                 echo "Erreur lors de l'insertion : " . mysqli_error($link);
             }
-
             mysqli_stmt_close($stmt);
         } else {
             echo "Erreur de préparation de la requête : " . mysqli_error($link);
@@ -50,8 +48,8 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){
     }
 }
 
-$query = "INSERT INTO `compte_client` (`Id_client`, `Nom`, `Prenom`, `Email`, `Adresse`, `Code_postal`, `Mdp`) VALUES (NULL, ?, ?, ?, ?, ?, ?)";
-$stmt = mysqli_prepare($link, $query);
+//$query = "INSERT INTO `compte_client` (`Id_client`, `Nom`, `Prenom`, `Email`, `Adresse`, `Code_postal`, `Mdp`) VALUES (NULL, ?, ?, ?, ?, ?, ?)";
+//$stmt = mysqli_prepare($link, $query);
 
 mysqli_close($link);
 
