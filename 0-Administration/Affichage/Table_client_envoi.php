@@ -4,14 +4,15 @@ $sqlUser = 'root';
 $sqlPass = 'root';      
 $dbname = 'commerce'; /* nom de la base de donné dans Php_my_admin*/
 
-$link = new mysqli($sqlHost, $sqlUser, $sqlPass, $dbname); // Connexion à la base de données
+$link = mysqli_connect($sqlHost, $sqlUser, $sqlPass, $dbname); //Connexion a la base de donnée avec la valeur $link
+mysqli_set_charset($link, "utf8");  // Il y a des problèmes si ont le met pas CAR C POURRI MYSQLI
 
-if ($link->connect_error) {   // Tester la connexion
-    die("Echec de la connexion : " . $link->connect_error);
+if (mysqli_connect_errno()) {   // test la connexion
+    printf("Echec de la connexion : %s\n", mysqli_connect_error());
+    exit();
 }
 
 $ID = $_POST['ID'];
-
 if (empty($_POST['Nom'])) {
     $nom = $_POST['Nom1'];
 } else {
@@ -47,7 +48,6 @@ if (empty($_POST['Mdp'])) {
 } else {
     $mdp = $_POST['Mdp'];
 }
-
 // Préparer la requête SQL avec des paramètres de substitution
 $execut_select = "UPDATE `compte_client` SET `Nom` = ?, `Prenom` = ?, `Email` = ?, `Adresse` = ?, `Code_postal` = ?, `Mdp` = ? WHERE `Id_client` = ?";
 $stmt = $link->prepare($execut_select);

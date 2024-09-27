@@ -23,14 +23,14 @@ if (mysqli_connect_errno()) {   // test la connexion
 <body>
   
   <header>
-    <h1>Créer article</h1>
+    <h1>Créer article <h1><a href="/Commerce/4-Connexion/Login_create_user.php">Retour site</a> </h1></h1>
   </header>
   <section>
     <h2> Quel est le type d'objet que vous allez ajouter ?</h2>
    
     <br>
-
-    <form action="redirection.php" method="post">
+    <!--form action="redirection.php" method="post"> -->
+    <form action="Creer_article.php" method="post">
       <select name="type" method="post">  
       <?php              
       $execut_select = "SELECT Id_type,Type FROM type_composant";  //exécution de la requête dans execut_select sous forme de "Tableau"

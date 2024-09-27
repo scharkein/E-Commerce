@@ -19,18 +19,15 @@ if (!$resultat) {
   printf("Erreur SQL : %s\n", mysqli_error($link));
   exit();
 }
-// création d'une fonction pour créer un menu déroulant d'info a partir d'une bdd
+function afficherOptions($resultat, $nomId, $nomValeur) {                            
+  $resultat->data_seek(0);                                                           
+  $valeursDejaAffichees = array();                                                  
 
-function afficherOptions($resultat, $nomId, $nomValeur) {                           // resultat = requete , nomID= ID de chaque critère ,  nomvaleurs= critere de chaque valeur 
-  $resultat->data_seek(0);                                                          // remet le pointer de la lecture de la requete a 0, obligatoire car on fait plussieurs parcours 
-  $valeursDejaAffichees = array();                                                  // créer un tableau vide
-
-  while ($row = $resultat->fetch_assoc()) {                                         // Parcour d'un tableau, $resultat est la valeur de chaque ligne du tableau
-      $valeur = $row[$nomValeur];                                                   // extrait la valeur de la colonne
-
-      if (!in_array($valeur, $valeursDejaAffichees)) {                              //vérifie qu'lle n'est pas deja dans le tableau pour éviter les valeurs distinctes, elle renvoi TRUE si oui et ! inverse le résultat
-          echo "<option value='" . $row[$nomId] . "'>" . $valeur . "</option>";     //Créer la balise option pour fire chaque option du menu déroulant 
-          $valeursDejaAffichees[] = $valeur;                                        //ajout de la valeur mise dans le menu déroulant
+  while ($row = $resultat->fetch_assoc()) {                                         
+      $valeur = $row[$nomValeur];                                                   
+      if (!in_array($valeur, $valeursDejaAffichees)) {                              
+          echo "<option value='" . $row[$nomId] . "'>" . $valeur . "</option>";
+          $valeursDejaAffichees[] = $valeur;                                        
       }
   }
 }
@@ -45,7 +42,7 @@ function afficherOptions($resultat, $nomId, $nomValeur) {                       
 </head>
 <body>
   <header>
-    <h1>Affichage table client :</h1>
+    <h1>Affichage table client : <h1><a href="/Commerce/4-Connexion/Login_create_user.php">Retour site</a> </h1></h1>
   </header>
   
   <section>

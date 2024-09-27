@@ -19,18 +19,15 @@ if (!$resultat) {
   printf("Erreur SQL : %s\n", mysqli_error($link));
   exit();
 }
-// création d'une fonction pour créer un menu déroulant d'info a partir d'une bdd
+function afficherOptions($resultat, $nomId, $nomValeur) {                            
+  $resultat->data_seek(0);                                                           
+  $valeursDejaAffichees = array();                                                  
 
-function afficherOptions($resultat, $nomId, $nomValeur) {                           // resultat = requete , nomID= ID de chaque critère ,  nomvaleurs= critere de chaque valeur 
-  $resultat->data_seek(0);                                                          // remet le pointer de la lecture de la requete a 0, obligatoire car on fait plussieurs parcours 
-  $valeursDejaAffichees = array();                                                  // créer un tableau vide
-
-  while ($row = $resultat->fetch_assoc()) {                                         // Parcour d'un tableau, $resultat est la valeur de chaque ligne du tableau
-      $valeur = $row[$nomValeur];                                                   // extrait la valeur de la colonne
-
-      if (!in_array($valeur, $valeursDejaAffichees)) {                              //vérifie qu'lle n'est pas deja dans le tableau pour éviter les valeurs distinctes, elle renvoi TRUE si oui et ! inverse le résultat
-          echo "<option value='" . $row[$nomId] . "'>" . $valeur . "</option>";     //Créer la balise option pour fire chaque option du menu déroulant 
-          $valeursDejaAffichees[] = $valeur;                                        //ajout de la valeur mise dans le menu déroulant
+  while ($row = $resultat->fetch_assoc()) {                                         
+      $valeur = $row[$nomValeur];                                                   
+      if (!in_array($valeur, $valeursDejaAffichees)) {                              
+          echo "<option value='" . $row[$nomId] . "'>" . $valeur . "</option>";
+          $valeursDejaAffichees[] = $valeur;                                        
       }
   }
 }
@@ -41,11 +38,11 @@ function afficherOptions($resultat, $nomId, $nomValeur) {                       
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Affichage table client : </title>
+  <title>Affichage table client  </title>
 </head>
 <body>
   <header>
-    <h1>Affichage table client :</h1>
+    <h1>Affichage table client <h1><a href="/Commerce/4-Connexion/Login_create_user.php">Retour site</a> </h1></h1>
   </header>
   
   <section>
@@ -69,12 +66,12 @@ function afficherOptions($resultat, $nomId, $nomValeur) {                       
     <br>
     <h1>NE RIEN ECRIRE SI RIEN A MODIFIER</h1>
     <input type="hidden" name="ID" value="<?php echo $ID; ?>">
-    Modifier le nom  :<input type="text" name="Nom" ><br><input type="hidden" name="Nom1" value="<?php echo $Nom; ?>">
-    Modifier le Prenom  :<input type="text" name="Prenom" ><br><input type="hidden" name="Prenom1" value="<?php echo $Prenom; ?>">
-    Modifier le Email  :<input type="text" name="Email" ><br><input type="hidden" name="Email1" value="<?php echo $Email; ?>">
-    Modifier le Adresse  :<input type="text" name="Adresse" ><br><input type="hidden" name="Adresse1" value="<?php echo $Adresse; ?>">
-    Modifier le Code_postal  :<input type="int" name="Code_postal" ><br><input type="hidden" name="Code_postal1" value="<?php echo $Code_postal; ?>">
-    Modifier le Mdp  :<input type="text" name="Mdp" ><br><input type="hidden" name="Mdp1" value="<?php echo $Mdp; ?>">
+    Modifier le nom  :<input type="text" name="Nom" ><br><input type="hidden" name="Nom1" value="<?php echo $Nom; ?>"><br>
+    Modifier le Prenom  :<input type="text" name="Prenom" ><br><input type="hidden" name="Prenom1" value="<?php echo $Prenom; ?>"><br>
+    Modifier le Email  :<input type="text" name="Email" ><br><input type="hidden" name="Email1" value="<?php echo $Email; ?>"><br>
+    Modifier le Adresse  :<input type="text" name="Adresse" ><br><input type="hidden" name="Adresse1" value="<?php echo $Adresse; ?>"><br>
+    Modifier le Code_postal  :<input type="int" name="Code_postal" ><br><input type="hidden" name="Code_postal1" value="<?php echo $Code_postal; ?>"><br>
+    Modifier le Mdp  :<input type="text" name="Mdp" ><br><input type="hidden" name="Mdp1" value="<?php echo $Mdp; ?>"><br>
 
     <input type="submit" value="Envoyer">
 
