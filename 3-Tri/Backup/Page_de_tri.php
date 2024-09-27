@@ -12,7 +12,7 @@ $execut_select = "SELECT * FROM `article` ORDER BY Type ASC";
 $resultat = $link->query($execut_select);  
 
 
-function Creer_critere($link, $Id_type, $nb_critere,$noom){
+function Creer_critere($link, $Id_type, $nb_critere){
   $crit = 'Critere_' . $nb_critere;
   $query="SELECT DISTINCT $crit FROM `article` WHERE `Type`=$Id_type ORDER BY $crit ASC ";
   $result=$link->query($query);
@@ -20,10 +20,13 @@ function Creer_critere($link, $Id_type, $nb_critere,$noom){
     $critere=$row[$crit];
     echo '                          
     <div class="filter-option">
-        <label for="'.$critere.'">'.$critere.'</label><input type="checkbox"  id="'.$critere.'" name="'.$noom.'">
+        <label for="'.$critere.'">'.$critere.'</label><input type="checkbox"  id="'.$critere.'" name="Vram">
     </div>';
   }
 }
+
+
+
 ?>
 
 <html lang="en"><head>
@@ -53,7 +56,7 @@ if (is_dir($sousRepertoireTete)) {
                   <!-- type -->
                   <div class="filter-category select-menu" id="type">
                     <div class="filter-title select-btn" id="select-btn"><span id="text">Type</span>
-                    <!-- <img class="incon-arrow rotate"src="../img/Site/chevron-down-outline.svg" alt="down-outline">--></div> 
+                    <img class="incon-arrow rotate"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
                     <div class="filter-options ">
                       <div class="filter-option ">
                         <label for="Carte Graphique">Carte Graphique</label><input type="checkbox"  id="1" name="type">
@@ -84,7 +87,7 @@ if (is_dir($sousRepertoireTete)) {
                   <!--Le Prix-->
                   <div class="filter-category" id="Prix">
                   <div class="filter-title select-btn" id="select-btn"><span id="text">Prix</span>
-                    <!-- <img class="incon-arrow rotate"src="../img/Site/chevron-down-outline.svg" alt="down-outline"> --></div>
+                    <img class="incon-arrow rotate"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
                     <div class="filter-options">
                       <div class="double-slider-box">
                         <div class="range-slider">
@@ -119,48 +122,91 @@ if (is_dir($sousRepertoireTete)) {
 
                   
                   <div class="filter-category" id="carte-graphique">
-                    <div class="filter-title select-btn" id="select-btn" style=" margin-bottom : 40px"><span id="text">Carte Graphique</span>
-                      <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
-                      <div class="filter-options">
-                        <!--Vram-->
-                        <div class="filter-category" id="Vram">
-                          <div class="filter-title select-btn" id="select-btn"><span id="text">Vram</span>
-                            <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline">
-                          </div>
+                  <div class="filter-title select-btn" id="select-btn" style=" margin-bottom : 40px"><span id="text">Carte Graphique</span>
+                    <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
+                    <div class="filter-options">
+                      <!--Vram-->
+                      <div class="filter-category" id="Vram">
+                        <div class="filter-title select-btn" id="select-btn"><span id="text">Vram</span>
+                          <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline">
+                        </div>
+                        
+                        <div class="filter-options">
+                          <?php
+                            $query_1_1="SELECT DISTINCT `Critere_1` FROM `article` WHERE `Type`=1 ORDER BY Critere_1  ASC"; 
+                            $result_1_1=$link->query($query_1_1); 
+                            while($row11=$result_1_1->fetch_assoc()){
+                              $crit1=$row11['Critere_1'];
+                              echo '                          
+                              <div class="filter-option">
+                                  <label for="'.$crit1.'">'.$crit1.'</label><input type="checkbox"  id="'.$crit1.'" name="Vram">
+                              </div>';
+                            }
+                            ?>
                           
-                          <div class="filter-options">
-                          <?php Creer_critere($link, 1, 1,"Vram"); //=======================================================================================================?>
-                            
-                        </div>
-                        </div>
-                        <!-- Fréquence du core -->
-                        <div class="filter-category" id="Core">
-                        <div class="filter-title select-btn" id="select-btn"><span id="text">Fréquence de core</span>
-                          <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
-                          <div class="filter-options">
-                            
-                          <?php Creer_critere($link, 1, 2,"Core"); //=======================================================================================================?>
-
-                            </div>
+                          <!-- <div class="filter-option">
+                            <label for="12">12 GB</label><input type="checkbox"  id="12" name="Vram">
                           </div>
-                        <!-- Consommation -->
-                        <div class="filter-category" id="C_carte_graphique">
-                        <div class="filter-title select-btn" id="select-btn"><span id="text">Consommation</span>
-                          <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
-                          <div class="filter-options">
-                            <?php Creer_critere($link, 1, 3,"C_carte_graphique"); //=======================================================================================================?>
-                            </div>
-                        </div>
-                        <!--RGB-->
-                        <div class="filter-category" id="rgb">
-                        <div class="filter-title select-btn" id="select-btn"><span id="text">RGB</span>
-                          <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
-                          <div class="filter-options">
-                            <?php Creer_critere($link, 1, 4,"rgb"); //=======================================================================================================?>
-                            </div>
-                        </div>
+                          <div class="filter-option">
+                            <label for="16">16 GB</label><input type="checkbox"  id="16" name="Vram">
+                          </div>
+                          <div class="filter-option">
+                            <label for="24">24 GB</label><input type="checkbox"  id="24" name="Vram">
+                        </div>   -->
                       </div>
-
+                      </div>
+                      <!-- Fréquence du core -->
+                      <div class="filter-category" id="Core">
+                      <div class="filter-title select-btn" id="select-btn"><span id="text">Fréquence de core</span>
+                        <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
+                        <div class="filter-options">
+                          <?php Creer_critere($link, 1, 2); //=======================================================================================================?>
+                          <!-- <div class="filter-option">
+                            <label for="2475">2475 MHz</label><input type="checkbox"  id="2475" name="Core">
+                          </div>
+                          <div class="filter-option">
+                            <label for="2520">2520 MHz</label><input type="checkbox"  id="2520" name="Core">
+                          </div>
+                          <div class="filter-option">
+                            <label for="2581">2581 MHz</label><input type="checkbox"  id="2581" name="Core">
+                          </div>
+                          <div class="filter-option">
+                            <label for="2250">2250 MHz</label><input type="checkbox"  id="2250" name="Core">
+                          </div> -->
+                          </div>
+                        </div>
+                      <!-- Consommation -->
+                      <div class="filter-category" id="C_carte_graphique">
+                      <div class="filter-title select-btn" id="select-btn"><span id="text">Consommation</span>
+                        <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
+                        <div class="filter-options">
+                          <div class="filter-option">
+                            <label for="200">200 Watt</label><input type="checkbox"  id="200" name="C_carte_graphique">
+                          </div>
+                          <div class="filter-option">
+                            <label for="450">450 Watt</label><input type="checkbox"  id="450" name="C_carte_graphique">
+                          </div>
+                          <div class="filter-option">
+                            <label for="300">300 Watt</label><input type="checkbox"  id="300" name="C_carte_graphique">
+                          </div>
+                          <div class="filter-option">
+                            <label for="230">230 Watt</label><input type="checkbox"  id="230" name="C_carte_graphique">
+                          </div>
+                          </div>
+                      </div>
+                      <!--RGB-->
+                      <div class="filter-category" id="rgb">
+                      <div class="filter-title select-btn" id="select-btn"><span id="text">RGB</span>
+                        <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
+                        <div class="filter-options">
+                          <div class="filter-option">
+                            <label for="oui">Oui</label><input type="checkbox"  id="Oui" name="rgb">
+                          </div>
+                          <div class="filter-option">
+                            <label for="non">Non</label><input type="checkbox"  id="Non" name="rgb">
+                          </div>
+                          </div>
+                      </div>
                 </aside>
                 <aside id="filter-aside-processeur" class="filter-aside-processeur">
                   <!--====================================
@@ -175,20 +221,36 @@ if (is_dir($sousRepertoireTete)) {
                       <div class="filter-title select-btn" id="select-btn"><span id="text">Coeurs</span>
                         <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
                         <div class="filter-options">
-                          
-                          <?php Creer_critere($link, 2, 1,"Coeurs"); //=======================================================================================================?>
+                          <div class="filter-option">
+                            <label for="8">8 Coeurs</label><input type="checkbox"  id="8" name="Coeurs">
+                          </div>
+                          <div class="filter-option">
+                            <label for="12">12 Coeurs</label><input type="checkbox"  id="12" name="Coeurs">
+                          </div>
+                          <div class="filter-option">
+                            <label for="16">16 Coeurs</label><input type="checkbox"  id="16" name="Coeurs">
+                          </div>
+                          <div class="filter-option">
+                            <label for="24">24 Coeurs</label><input type="checkbox"  id="24" name="Coeurs">
+                          </div>
                         </div>
                         </div>
-                        
 
                       <!-- Fréquence de base -->
                       <div class="filter-category" id="f_processeur">
                       <div class="filter-title select-btn" id="select-btn"><span id="text">Fréquence de base</span>
                         <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
                         <div class="filter-options">
-                        
-                        <?php Creer_critere($link, 2, 2,"f_processeur"); //=======================================================================================================?>
-
+                        <div class="filter-option">
+                            <label for="5.80">5.80 GHz</label><input type="checkbox"  id="5.80" name="f_processeur">
+                          </div>
+                          <div class="filter-option">
+                            <label for="5.40">5.40 Ghz</label><input type="checkbox"  id="5.40" name="f_processeur">
+                          </div>
+                          <div class="filter-option">
+                            <label for="5.60">5.60 GHz</label><input type="checkbox"  id="5.60" name="f_processeur">
+                          </div>
+                      
                         </div>
                       </div>
                       <!-- Consommation -->
@@ -196,9 +258,14 @@ if (is_dir($sousRepertoireTete)) {
                       <div class="filter-title select-btn" id="select-btn"><span id="text">Consommation</span>
                         <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
                         <div class="filter-options">
-                        
-                        <?php Creer_critere($link, 2, 3,"C_processeurs"); //=======================================================================================================?>
-                          
+                        <div class="filter-option">
+                            <label for="253">253 Watt</label><input type="checkbox"  id="253" name="C_processeurs">
+                          </div>
+                          <div class="filter-option">
+                            <label for="170">170 Watt</label><input type="checkbox"  id="170" name="C_processeurs">
+                          </div>
+                          <div class="filter-option">
+                            <label for="105">105 Watt</label><input type="checkbox"  id="105" name="C_processeurs">
                           </div>
                           </div>
                       </div>
@@ -216,9 +283,12 @@ if (is_dir($sousRepertoireTete)) {
                       <div class="filter-title select-btn" id="select-btn"><span id="text">Type</span>
                         <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
                         <div class="filter-options">
-                          
-                          <?php Creer_critere($link, 3, 1,"R_type"); //=======================================================================================================?>
-                          
+                          <div class="filter-option">
+                            <label for="DDR4">DDR4</label><input type="checkbox"  id="DDR4" name="R_type">
+                          </div>
+                          <div class="filter-option">
+                            <label for="DDR5">DDR5</label><input type="checkbox"  id="DDR5" name="R_type">
+                          </div>
                           </div>
                       </div>
                       <!-- Fréquence -->
@@ -226,9 +296,18 @@ if (is_dir($sousRepertoireTete)) {
                       <div class="filter-title select-btn" id="select-btn"><span id="text">Fréquence</span>
                         <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
                         <div class="filter-options">
-                        
-                        <?php Creer_critere($link, 3, 2,"f_RAM"); //=======================================================================================================?>
-                          
+                        <div class="filter-option">
+                            <label for="7600">7600 MHz</label><input type="checkbox"  id="7600" name="f_RAM">
+                          </div>
+                          <div class="filter-option">
+                            <label for="6400">6400 MHz</label><input type="checkbox"  id="6400" name="f_RAM">
+                          </div>
+                          <div class="filter-option">
+                            <label for="6000">6000 MHz</label><input type="checkbox"  id="6000" name="f_RAM">
+                          </div>
+                          <div class="filter-option">
+                            <label for="8000">8000 MHz</label><input type="checkbox"  id="8000" name="f_RAM">
+                          </div>
                           </div>
                       </div>
                       <!-- Stockage -->
@@ -236,10 +315,12 @@ if (is_dir($sousRepertoireTete)) {
                       <div class="filter-title select-btn" id="select-btn"><span id="text">stockage</span>
                         <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
                         <div class="filter-options">
-                          
-                          <?php Creer_critere($link, 3, 3,"R_stockage"); //=======================================================================================================?>
-                      
-                      </div>
+                          <div class="filter-option">
+                            <label for="2x8GB">2x8GB</label><input type="checkbox"  id="2x8GB" name="R_stockage">
+                          </div>
+                          <div class="filter-option">
+                            <label for="2x16GB">2x16GB</label><input type="checkbox"  id="2x16GB" name="R_stockage">
+                          </div>
                       </div>
                       </div>
                 </aside>
@@ -256,31 +337,45 @@ if (is_dir($sousRepertoireTete)) {
                       <div class="filter-title select-btn" id="select-btn"><span id="text">Type de RAM</span>
                         <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
                         <div class="filter-options">
-                          
-                          <?php Creer_critere($link, 4, 1,"C_type"); //=======================================================================================================?>
-                          
-                      </div>
+                          <div class="filter-option">
+                            <label for="DDR4">DDR4</label><input type="checkbox"  id="DDR4" name="C_type">
+                          </div>
+                          <div class="filter-option">
+                            <label for="DDR5">DDR5</label><input type="checkbox"  id="DDR5" name="C_type">
+                          </div>
+                          </div>
                       </div>
                       <!-- Vitesse de RAM Max -->
                       <div class="filter-category" id="f_carte_mere">
                       <div class="filter-title select-btn" id="select-btn"><span id="text">Vitesse de RAM max</span>
                         <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
                         <div class="filter-options">
-                        
-                        <?php Creer_critere($link, 4, 2,"f_carte_mere"); //=======================================================================================================?>
-                        
-                      </div>
+                        <div class="filter-option">
+                            <label for="7800">7800 +MT/s</label><input type="checkbox"  id="7800" name="f_carte_mere">
+                          </div>
+                          <div class="filter-option">
+                            <label for="7200">7200 +MT/s</label><input type="checkbox"  id="7200" name="f_carte_mere">
+                          </div>
+                          <div class="filter-option">
+                            <label for="7000">7000 +MT/s</label><input type="checkbox"  id="7000" name="f_carte_mere">
+                          </div>
+                          <div class="filter-option">
+                            <label for="5333">5333 +MT/s</label><input type="checkbox"  id="5333" name="f_carte_mere">
+                          </div>
+                          </div>
                       </div>
                       <!--Format-->
                       <div class="filter-category" id="C_format">
                       <div class="filter-title select-btn" id="select-btn"><span id="text">Format</span>
                         <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
                         <div class="filter-options">
-                          
-                          <?php Creer_critere($link, 4, 3,"C_format"); //=======================================================================================================?>
-                          
-                      </div>
-                    </div>
+                          <div class="filter-option">
+                            <label for="ATX">ATX</label><input type="checkbox"  id="ATX" name="C_format">
+                          </div>
+                          <div class="filter-option">
+                            <label for="Mini-ITX">Mini-ITX</label><input type="checkbox"  id="Mini-ITX" name="C_format">
+                          </div>
+                          </div>
                       </div>
                 </aside>
                 <aside id="filter-aside-stockage" class="filter-aside-stockage">
@@ -296,9 +391,12 @@ if (is_dir($sousRepertoireTete)) {
                       <div class="filter-title select-btn" id="select-btn"><span id="text">Taille</span>
                         <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
                         <div class="filter-options">
-                          
-                          <?php Creer_critere($link, 5, 1,"S_Taille"); //=======================================================================================================?>
-                          
+                          <div class="filter-option">
+                            <label for="1To">1To</label><input type="checkbox"  id="1To" name="S_Taille">
+                          </div>
+                          <div class="filter-option">
+                            <label for="2To">2To</label><input type="checkbox"  id="2To" name="S_Taille">
+                          </div>
                           </div>
                       </div>
                       <!-- Vitesse de transfert -->
@@ -306,9 +404,12 @@ if (is_dir($sousRepertoireTete)) {
                       <div class="filter-title select-btn" id="select-btn"><span id="text">Vitesse de transfert</span>
                         <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
                         <div class="filter-options">
-                          
-                          <?php Creer_critere($link, 5, 2,"f_stockage"); //=======================================================================================================?>
-                          
+                          <div class="filter-option">
+                            <label for="7000">7800 Mo/s</label><input type="checkbox"  id="7000" name="f_stockage">
+                          </div>
+                          <div class="filter-option">
+                            <label for="3500">3500 Mo/s</label><input type="checkbox"  id="3500" name="f_stockage">
+                          </div>
                           </div>
                       </div>
                       <!--Type-->
@@ -316,10 +417,12 @@ if (is_dir($sousRepertoireTete)) {
                       <div class="filter-title select-btn" id="select-btn"><span id="text">Type</span>
                         <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
                         <div class="filter-options">
-                          
-                          <?php Creer_critere($link, 5, 3,"S_type"); //=======================================================================================================?>
-                      
-                      </div>
+                          <div class="filter-option">
+                            <label for="SSD">SSD</label><input type="checkbox"  id="SSD" name="S_type">
+                          </div>
+                          <div class="filter-option">
+                            <label for="disque-dur">Disque dur</label><input type="checkbox"  id="disque-dur" name="S_type">
+                          </div>
                       </div>
                       </div>
                 </aside>
@@ -336,9 +439,18 @@ if (is_dir($sousRepertoireTete)) {
                       <div class="filter-title select-btn" id="select-btn"><span id="text">Dimension</span>
                         <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
                         <div class="filter-options">
-                          
-                          <?php Creer_critere($link, 6, 1,"B_dimension"); //=======================================================================================================?>
-                          
+                          <div class="filter-option">
+                            <label for="200/430/377">200/430/377</label><input type="checkbox"  id="200/430/377" name="B_dimension">
+                          </div>
+                          <div class="filter-option">
+                            <label for="210/457/407">210/457/407</label><input type="checkbox"  id="210/457/407" name="B_dimension">
+                          </div>
+                          <div class="filter-option">
+                            <label for="210/499/421">210/499/421</label><input type="checkbox"  id="210/499/421" name="B_dimension">
+                          </div>
+                          <div class="filter-option">
+                            <label for="230/466/453">230/466/453</label><input type="checkbox"  id="230/466/453" name="B_dimension">
+                          </div>
                           </div>
                       </div>
                       <!--Format Carte mere-->
@@ -346,9 +458,12 @@ if (is_dir($sousRepertoireTete)) {
                       <div class="filter-title select-btn" id="select-btn"><span id="text">Format carte mere</span>
                         <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
                         <div class="filter-options">
-                          
-                          <?php Creer_critere($link, 6, 2,"taille_carte_mere"); //=======================================================================================================?>
-                        
+                          <div class="filter-option">
+                            <label for="ATX">ATX</label><input type="checkbox"  id="ATX" name="taille_carte_mere">
+                          </div>
+                          <div class="filter-option">
+                            <label for="Mini-ITX">Mini-ITX</label><input type="checkbox"  id="Mini-ITX" name="taille_carte_mere">
+                          </div>
                         </div>
                       </div>
                       <!--Format Alim-->
@@ -356,9 +471,12 @@ if (is_dir($sousRepertoireTete)) {
                       <div class="filter-title select-btn" id="select-btn"><span id="text">Format Alimentation</span>
                         <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
                         <div class="filter-options">
-                          
-                          <?php Creer_critere($link, 6, 3,"taille_alimentation"); //=======================================================================================================?>
-                          
+                          <div class="filter-option">
+                            <label for="ATX">ATX</label><input type="checkbox"  id="ATX" name="taille_alimentation">
+                          </div>
+                          <div class="filter-option">
+                            <label for="Mini-ITX">Mini-ITX</label><input type="checkbox"  id="Mini-ITX" name="taille_alimentation">
+                          </div>
                           </div>
                       </div>
                       <!--taille carte graphique-->
@@ -366,9 +484,14 @@ if (is_dir($sousRepertoireTete)) {
                       <div class="filter-title select-btn" id="select-btn"><span id="text">Format Alimentation</span>
                         <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
                         <div class="filter-options">
-                          
-                          <?php Creer_critere($link, 6, 4,"taille_carte_graphique"); //=======================================================================================================?>
-                          
+                          <div class="filter-option">
+                            <label for="280">280 mm</label><input type="checkbox"  id="280" name="taille_carte_graphique">
+                          </div>
+                          <div class="filter-option">
+                            <label for="330">330 mm</label><input type="checkbox"  id="330" name="taille_carte_graphique">
+                          </div>
+                          <div class="filter-option">
+                            <label for="360">360 mm</label><input type="checkbox"  id="360" name="taille_carte_graphique">
                           </div>
                           </div>
                       </div>
@@ -386,9 +509,18 @@ if (is_dir($sousRepertoireTete)) {
                       <div class="filter-title select-btn" id="select-btn"><span id="text">Dimension</span>
                         <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
                         <div class="filter-options">
-                          
-                          <?php Creer_critere($link, 7, 1,"A_dimension"); //=======================================================================================================?>
-                          
+                          <div class="filter-option">
+                            <label for="16/15/8,6">16/15/8,6</label><input type="checkbox"  id="16/15/8,6" name="A_dimension">
+                          </div>
+                          <div class="filter-option">
+                            <label for="15/20/8,6">15/20/8,6</label><input type="checkbox"  id="15/20/8,6" name="A_dimension">
+                          </div>
+                          <div class="filter-option">
+                            <label for="14/15/8,6">14/15/8,6</label><input type="checkbox"  id="14/15/8,6" name="A_dimension">
+                          </div>
+                          <div class="filter-option">
+                            <label for="17/15,2/8,2">17/15,2/8,2</label><input type="checkbox"  id="17/15,2/8,2" name="B_dimension">
+                          </div>
                           </div>
                       </div>
                       <!--consommation-->
@@ -396,9 +528,18 @@ if (is_dir($sousRepertoireTete)) {
                       <div class="filter-title select-btn" id="select-btn"><span id="text">Consommation</span>
                         <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
                         <div class="filter-options">
-                          
-                          <?php Creer_critere($link, 7, 2,"C_alimentation"); //=======================================================================================================?>
-                          
+                          <div class="filter-option">
+                            <label for="650 W">650 W</label><input type="checkbox"  id="650 W" name="C_alimentation">
+                          </div>
+                          <div class="filter-option">
+                            <label for="850 W">850 W</label><input type="checkbox"  id="850 W" name="C_alimentation">
+                          </div>
+                          <div class="filter-option">
+                            <label for="1000 W">1000 W</label><input type="checkbox"  id="1000 W" name="C_alimentation">
+                          </div>
+                          <div class="filter-option">
+                            <label for="1200 W">1200 W</label><input type="checkbox"  id="1200 W" name="C_alimentation">
+                          </div>
                           </div>
                       </div>
                       <!--Format-->
@@ -406,10 +547,12 @@ if (is_dir($sousRepertoireTete)) {
                       <div class="filter-title select-btn" id="select-btn"><span id="text">Format</span>
                         <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
                         <div class="filter-options">
-                          
-                          <?php Creer_critere($link, 7, 3,"A_type"); //=======================================================================================================?>
-                        
-                        </div>
+                          <div class="filter-option">
+                            <label for="ATX">ATX</label><input type="checkbox"  id="ATX" name="A_type">
+                          </div>
+                          <div class="filter-option">
+                            <label for="Mini-ITX">Mini-ITX</label><input type="checkbox"  id="Mini-ITX" name="A_type">
+                          </div>
                         </div>
                       </div>
                 </aside>
@@ -426,9 +569,12 @@ if (is_dir($sousRepertoireTete)) {
                       <div class="filter-title select-btn" id="select-btn"><span id="text">Type</span>
                         <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
                         <div class="filter-options">
-                          
-                          <?php Creer_critere($link, 8, 1,"Ref_type"); //=======================================================================================================?>
-                          
+                          <div class="filter-option">
+                            <label for="Air">Air</label><input type="checkbox"  id="Air" name="Ref_type">
+                          </div>
+                          <div class="filter-option">
+                            <label for="Watercooling">Watercooling</label><input type="checkbox"  id="Watercooling" name="Ref_type">
+                          </div>
                           </div>
                         </div>
                       
@@ -437,9 +583,15 @@ if (is_dir($sousRepertoireTete)) {
                       <div class="filter-title select-btn" id="select-btn"><span id="text">Débit d'Air</span>
                         <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
                         <div class="filter-options">
-                          
-                          <?php Creer_critere($link, 8, 2,"Debit_dair"); //=======================================================================================================?>
-                        
+                          <div class="filter-option">
+                            <label for="62 CFM">62 CFM</label><input type="checkbox"  id="62 CFM" name="Debit_dair">
+                          </div>
+                          <div class="filter-option">
+                            <label for="56.3 CFM">56.3 CFM</label><input type="checkbox"  id="56.3 CFM" name="Debit_dair">
+                          </div>
+                          <div class="filter-option">
+                            <label for="98.17 CFM">98.17 CFM</label><input type="checkbox"  id="98.17 CFM" name="Debit_dair">
+                          </div>
                         </div>
                       </div>
                       <!--Socket-->
@@ -447,9 +599,12 @@ if (is_dir($sousRepertoireTete)) {
                       <div class="filter-title select-btn" id="select-btn"><span id="text">Socket</span>
                         <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
                         <div class="filter-options">
-                          
-                          <?php Creer_critere($link, 8, 3,"socket"); //=======================================================================================================?>
-                        
+                          <div class="filter-option">
+                            <label for="LGA1700">LGA1700</label><input type="checkbox"  id="LGA1700" name="socket">
+                          </div>
+                          <div class="filter-option">
+                            <label for="Multi-socket">Multi-socket</label><input type="checkbox"  id="Multi-socket" name="socket">
+                          </div>
                         </div>
                       </div>
                       <!--ventilateur-->
@@ -457,10 +612,18 @@ if (is_dir($sousRepertoireTete)) {
                       <div class="filter-title select-btn" id="select-btn"><span id="text">Ventilateur</span>
                         <img class="incon-arrow"src="../img/Site/chevron-down-outline.svg" alt="down-outline"></div>
                         <div class="filter-options">
-                          
-                          <?php Creer_critere($link, 8, 4,"ventilateur"); //=======================================================================================================?>
-                        
-                        </div>
+                          <div class="filter-option">
+                            <label for="158mm">158 mm</label><input type="checkbox"  id="158mm" name="socket">
+                          </div>
+                          <div class="filter-option">
+                            <label for="165mm">165 mm</label><input type="checkbox"  id="165mm" name="socket">
+                          </div>
+                          <div class="filter-option">
+                            <label for="397mm">397 mm</label><input type="checkbox"  id="397mm" name="socket">
+                          </div>
+                          <div class="filter-option">
+                            <label for="400mm">400 mm</label><input type="checkbox"  id="400mm" name="socket">
+                          </div>
                         </div>
                       </div>
                 </aside>
@@ -499,7 +662,7 @@ if (is_dir($sousRepertoireTete)) {
                     $Crit4=$row['Critere_4'];$Crit5=$row['Critere_5'];
                     
                     echo '
-                    <article class="card card--1" data-type="'.$Type.'" data-Prix="'.$Prix_vente.'" data-Crit1="'.$Crit1.'" data-Crit2="'.$Crit2.'" data-Crit3="'.$Crit3.'" data-Crit4="'.$Crit4.'" data-Crit5="'.$Crit5.'">
+                    <article class="card card--1" data-type = '.$Type.' data-Prix = '.$Prix_vente.' data-Crit1 = '.$Crit1.' data-Crit2 = '.$Crit2.' data-Crit3 = '.$Crit3.' data-Crit4 = '.$Crit4.' data-Crit5 = '.$Crit5.'>
                       <div class="card__img-wrap">
                         <img src="../img/Article/'.$Id_article.'_0.png" alt="" class=" card__img"> 
                       </div>
@@ -546,7 +709,7 @@ if (is_dir($sousRepertoireTete)) {
                 ?> 
 
                   <!--======================================================EXEMPLE d'article=================================================================-->
-                  <!-- <article class="card card--1" data-type="1">
+                  <article class="card card--1" data-type="1">
                     <div class="card__img-wrap">
                       <img src="../img/Article/GeForce_RTX_4070.png" alt="" class=" card__img">
                     </div>
@@ -584,10 +747,10 @@ if (is_dir($sousRepertoireTete)) {
                             </li>
                           </ul>
                         </div>
-                      </div> 
+                      </div>
                      <a href="../2-Article/<?php echo $Id_article;?>.php"><button class="card__button"><span class="card__button--front">en savoir plus</span></button></a>
                     </div>
-                  </article>-->
+                  </article>
                   </main>
               </section>
               <!-- Swiper -->
