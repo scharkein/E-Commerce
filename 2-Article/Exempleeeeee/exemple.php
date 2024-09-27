@@ -28,7 +28,6 @@ if (is_dir($sousRepertoireTete)) {
             <section class="left"> <!--===============================================================================
                                         ============================= Gauche ======================================
                                     ==================================================================================-->
-                <!--===============Début carousel==================================-->
                 <div class="swiper-container galleryMain swiper-container-coverflow swiper-container-3d swiper-container-initialized swiper-container-horizontal">
                     <div class="swiper-wrapper"
                         style="transform: translate3d(-5778px, 0px, 0px); perspective-origin: 6109.5px 50%; transition-duration: 0ms;">
@@ -95,11 +94,13 @@ if (is_dir($sousRepertoireTete)) {
                             </div>
                         </div>
                     </div>
-                    <!-- les fleches et les bulles du carousel -->
+			 <!-- les fleches et les bulles du carousel -->
+                    <!--La fleche gauche-->
+                    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
                 </div>
-               <!--Les bulles--->
-                <div class="sliderNavigation"><!--La fleche gauche-->
-                    <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide"><img src="../img/Site/arrow-prev.svg" alt=""></div><!--useless pour l'instant-->
+                 <!--Les bulles--->
+                <div class="sliderNavigation">
+                    <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide"></div>
                     <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets">
                         <span class="swiper-pagination-bullet" tabindex="0" role="button"
                             aria-label="Go to slide 1"></span>
@@ -114,10 +115,9 @@ if (is_dir($sousRepertoireTete)) {
                         <span class="swiper-pagination-bullet" tabindex="0" role="button"
                             aria-label="Go to slide 6"></span>
                     </div><!--La fleche droites-->
-                    <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide"><img src="../img/Site/arrow-next.svg" alt=""></div><!--useless pour l'instant-->
-                    
+                    <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide"></div>
                 </div>
-            </section><!--================Fin carousel=============================-->
+            </section>
 
             <section class="right">
                 <div class="rightContent">
@@ -137,10 +137,10 @@ if (is_dir($sousRepertoireTete)) {
                             <div class="dropdown">
                                 <div class="form dropContent">
                                     <ul>
-                                        <li>🛠️ Vram: 12 GB </li>
-                                        <li>🛠️ Fréquence de core: 1770 MHz</li>
-                                        <li>🛠️ Consommation: 200 Watt</li>
-                                        <li>🛠️ RGB: Non</li>
+                                        <li>Vram: 12 GB </li>
+                                        <li>Fréquence de core: 1770 MHz</li>
+                                        <li>Consommation: 200 Watt</li>
+                                        <li>RGB: Non</li>
                                     </ul>
                                 </div>
                             </div>
@@ -161,8 +161,7 @@ if (is_dir($sousRepertoireTete)) {
 
                             <p class="error">Nous n'avons que 5 articles en stock.</p>
                         </div>
-                    </div>
-                    <!--Les carre--> 
+                    </div><!--Les carre-->
                     <div class="swiper-container galleryThumbs swiper-container-initialized swiper-container-horizontal swiper-container-thumbs">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide swiper-slide-active">
@@ -185,7 +184,7 @@ if (is_dir($sousRepertoireTete)) {
                             </div>
                         </div>
                     </div>
-                </div> <!--Le bouton panier-->
+                </div><!--Le bouton panier-->
                 <div class="btnContainer fixedBtn">
                     <button class="btn add">
                         <img src="/Commerce/img/Site/shopping-cart-w.svg" alt="">

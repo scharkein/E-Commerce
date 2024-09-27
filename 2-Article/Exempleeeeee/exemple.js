@@ -5,14 +5,35 @@ window.addEventListener("load", event => {
     // Variables
     ////////////////
 
-    
-    let = priceFinal = document.querySelector('.priceFinal'),
-      priceOriginal = document.querySelector('.priceOriginal'),
-      discount = null,
-      maxQuantity = product.maxQuantity,                                   //quantite du produits<================================ récuperer via php 
-      newMaxQuantity = maxQuantity;
-      console.log(maxQuantity)
-      console.log(newMaxQuantity)
+    const product = {
+
+      value: 700,
+      images: [{
+        img: '/Commerce/img/GeForce_RTX_4070.png'
+      }, //img 1
+
+      {
+        img: '/Commerce/img/GeForce_RTX_4070.png'
+      },//img 2
+
+      {
+        img: '/Commerce/img/GeForce_RTX_4070.png'
+      },//img 3
+
+      {
+        img: '/Commerce/img/GeForce_RTX_4070.png'
+      },//img 4
+
+      {
+        img: '/Commerce/img/GeForce_RTX_4070.png'
+      },//img 5
+
+      {
+        img: '/Commerce/img/GeForce_RTX_4070.png'
+      }]
+    };//img 6
+
+
 
 
     const btnAdd = document.querySelector('.btn.add'),
@@ -30,6 +51,11 @@ window.addEventListener("load", event => {
       shoppingMenu = document.querySelector('.shoppingMenu'),
       emptyCart = document.querySelector('.emptyCart');
 
+    let = priceFinal = document.querySelector('.priceFinal'),
+      priceOriginal = document.querySelector('.priceOriginal'),
+      discount = null,
+      maxQuantity = 10,                                   //quantite du produits
+      newMaxQuantity = maxQuantity;
 
     ////////////////
     // Evenement
@@ -55,8 +81,9 @@ window.addEventListener("load", event => {
       } else {
         nav.classList.remove("fixed");
       }
-      resize(); // Ajoutez cette ligne pour appeler la fonction resize lors du dÃ©filement
-    };  
+      resize(); // Ajoutez cette ligne pour appeler la fonction resize lors du défilement
+    };
+
     // Change button position on mobile
 
     function resize() {
@@ -72,7 +99,7 @@ window.addEventListener("load", event => {
     // Parallax
     function parallax() {
       if (window.innerWidth > 800) {
-        // SÃ©lectionnez uniquement les images avec la classe '.scene' dans le conteneur '.galleryMain'
+        // Sélectionnez uniquement les images avec la classe '.scene' dans le conteneur '.galleryMain'
         var scene = document.querySelectorAll('.scene');
         scene.forEach(pic => {
           var parallax = new Parallax(pic);
@@ -92,30 +119,29 @@ window.addEventListener("load", event => {
     function getDisccount() {
       priceOriginal.innerText = product.value + "€";
       discount = product.value - product.value * (30 / 100);
-      priceFinal.innerText = discount.toFixed(2) + "€";
+      priceFinal.innerText = discount + "€";
     }
 
-    // Calcule les prix avec la rÃ©duction
+    // Calcule les prix avec la réduction
 
     function getPrice() {
-      priceFinal.innerText = (discount * inputQuantity.value).toFixed(2) + "€";
-      priceOriginal.innerText = (product.value * inputQuantity.value).toFixed(2) + "€";
+
+      priceFinal.innerText = discount * inputQuantity.value + "€";
+      priceOriginal.innerText = product.value * inputQuantity.value + "€";
+
 
       setTimeout(() => {
         priceFinal.classList.remove('anime');
       }, 400);
     }
 
-    // Mise Ã  jour des prix avec le compteur de quantitÃ©
+    // Mise à jour des prix avec le compteur de quantité
 
     function plusQuantity() {
-      if (inputQuantity.value != maxQuantity) {
-        inputQuantity.value = ++inputQuantity.value;
+      if (inputQuantity.value < maxQuantity) {
+        inputQuantity.value = ++inputQuantity.value;;
         priceFinal.classList.add('anime');
       }
-      console.log("inputQuantity.value :",inputQuantity.value,"<  MaxQuantity :",maxQuantity);
-      console.log(inputQuantity.value < maxQuantity);
-      console.log(2 < 10)
       getPrice();
     }
 
@@ -124,50 +150,30 @@ window.addEventListener("load", event => {
         inputQuantity.value = --inputQuantity.value;
         priceFinal.classList.add('anime');
       }
-      console.log(maxQuantity)
-      console.log(inputQuantity.value)
       getPrice();
     }
 
     // Ajoute des articles au panier
 
     function addItem() {
+
       let cenas = parseInt(itemNumber.innerText) + parseInt(inputQuantity.value);
-  
+
       if (cenas <= newMaxQuantity) {
-          itemNumber.style.display = "flex";
-          itemNumber.innerText = cenas;
-          shoppingTotal.innerText = "Total :" + discount * cenas + "€";
-          shoppingQuantity.innerText = "x" + cenas;
-          itemNumber.classList.add("addItem");
-          error.style.display = "none";
-          lien = product.Id_article + ".php";
-          
-          // Appel AJAX pour envoyer les données au serveur PHP
-          var xhr = new XMLHttpRequest();
-          xhr.open('POST', lien, true);
-          xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-          xhr.onload = function() {
-              if (xhr.status === 200) {
-                  // Traitement de la réponse si nécessaire
-                  console.log(xhr.responseText);
-              }
-          };
-          
-          // Envoyer la quantité souhaitée et un indicateur que la requête vient de addItem
-          xhr.send('quantite=' + encodeURIComponent(inputQuantity.value) + '&addItem=true');
-          console.log(lien);
-  
+        itemNumber.style.display = "flex";
+        itemNumber.innerText = cenas;
+        shoppingTotal.innerText = "Total :" + discount * cenas + "€";
+        shoppingQuantity.innerText = "x" + cenas;
+        itemNumber.classList.add("addItem");
+        error.style.display = "none";
       } else {
-          error.style.display = "flex";
+        error.style.display = "flex";
       }
+
       setTimeout(() => {
         itemNumber.classList.remove("addItem");
       }, 700);
-  }
-  
-  
-  
+    }
 
     // Ouvrir le panier 
 
@@ -189,31 +195,31 @@ window.addEventListener("load", event => {
       itemNumber.classList.remove('addItem');
       itemNumber.innerText = "0";
     }
-// EN CONSTRUCTION Automatisation du swiper
+
     // Remplir les images pour Swiper
-    // product.images.forEach(function (el) {
-    //   let template = `
-    // <div class="swiper-slide">
-    //   <div class="scene" data-hover-only="false">
-    //     <img src="${el.img}" data-depth="0.5">
-    //     <img src="${el.img}" data-depth="1" class="shadow">
-    //   </div>
-    // </div>`;
+    product.images.forEach(function (el) {
+      let template = `
+    <div class="swiper-slide">
+      <div class="scene" data-hover-only="false">
+        <img src="${el.img}" data-depth="0.5">
+        <img src="${el.img}" data-depth="1" class="shadow">
+      </div>
+    </div>`;
 
-    //   let template2 = `
-    // <div class="swiper-slide">
-    //   <img src="${el.img}">
-    // </div>`;
+      let template2 = `
+    <div class="swiper-slide">
+      <img src="${el.img}">
+    </div>`;
 
-    //   let newDiv = document.createElement("div");
-    //   newDiv.innerHTML = template;
-    //   let newDiv2 = document.createElement("div");
-    //   newDiv2.innerHTML = template2;
+      let newDiv = document.createElement("div");
+      newDiv.innerHTML = template;
+      let newDiv2 = document.createElement("div");
+      newDiv2.innerHTML = template2;
 
 
-    //   document.querySelector('.galleryMain .swiper-wrapper').appendChild(newDiv);
-    //   document.querySelector('.galleryThumbs .swiper-wrapper').appendChild(newDiv2);
-    // });
+      document.querySelector('.galleryMain .swiper-wrapper').appendChild(newDiv);
+      document.querySelector('.galleryThumbs .swiper-wrapper').appendChild(newDiv2);
+    });
 
     // Configuration du parallax pour les images de la galerie principale
     if (window.innerWidth > 800) {
@@ -239,7 +245,7 @@ window.addEventListener("load", event => {
       spaceBetween: 300,
       speed: 500,
       loop: true,
-      loopedSlides: 5, //les diapositives en boucle doivent Ãªtre les mÃªmes
+      loopedSlides: 5, //les diapositives en boucle doivent être les mêmes
       effect: "coverflow",
       coverflowEffect: {
         rotate: 50,
@@ -264,7 +270,7 @@ window.addEventListener("load", event => {
         swiper: galleryThumbs
       }
     });
-    // Gestion des Ã©vÃ©nements pour les flÃ¨ches
+    // Gestion des événements pour les flèches
     var prevButton = document.querySelector('.swiper-button-prev');
     var nextButton = document.querySelector('.swiper-button-next');
 
